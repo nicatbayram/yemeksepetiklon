@@ -1,0 +1,330 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, inherit, inherit;
+    background-color: #ffffff;
+  }
+
+  .header-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    position: relative;
+  }
+
+  .content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1500px;
+    margin: auto;
+    width: 100%;
+  }
+
+  .search-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .search-area h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    font-family: inherit;
+  }
+
+  .search-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .search-input-group input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  .location-wrapper {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+    padding: 1rem;
+    color: #ea004b;
+    cursor: pointer;
+  }
+
+  .location-wrapper .bi {
+    margin-right: 0.5rem;
+    color: #ea004b;
+  }
+
+  .search-button {
+    background-color: #ea004b;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 10px;
+    font-size: 1rem;
+    position: absolute;
+    margin-left: 710px;
+    margin-top: 13px;
+    top: 50%;
+    transition: background-color 0.1s ease, transform 0.1s ease;
+  }
+  .search-button:hover {
+    background-color: #ea004b;
+    transform: scale(1.05);
+  }
+
+  .image-container {
+    max-width: 600px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .header-section {
+      flex-direction: column;
+    }
+
+    .content-wrapper {
+      flex-direction: column;
+    }
+
+    .image-container {
+      order: 1;
+      max-width: 100%;
+    }
+
+    .search-button {
+      position: static;
+      transform: none;
+      top: auto;
+      right: auto;
+      margin-top: 10px;
+    }
+  }
+  .container {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+
+  .kirmizi-kutu {
+    border-start-start-radius: 20px;
+    border-end-start-radius: 20px;
+    height: 400px;
+    background-color: #fa0050;
+    width: 650px;
+    font: inherit;
+  }
+
+  .yazilar {
+    margin-left: 50px;
+    margin-top: 50px;
+    font-size: 17px;
+    /font-family: inherit;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  .yazilar2 {
+    color: white;
+    font: inherit;
+    font-size: 17px;
+    align-items: start;
+    margin-left: 50px;
+    text-align: start;
+  }
+  .kirmizi-kutu-2 {
+    background-color: #fa0050;
+    height: 400px;
+    width: 650px;
+    align-items: center;
+    border-end-end-radius: 20px;
+    border-start-end-radius: 20px;
+  }
+
+  .resim {
+    margin-left: 50px;
+  }
+
+  .logos {
+    padding: 20px;
+    margin: 50px;
+  }
+
+  section {
+    max-width: 800px;
+    margin: 20px 100px;
+    padding: 0 50px;
+    text-align: justify;
+  }
+
+  h1 {
+    color: #333;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+</style>
+
+<body>
+  <div class="header-section">
+    <div class="content-wrapper">
+      <div class="search-area">
+        <h1>Yemek ya da market, tüm ihtiyaçların kapında!</h1>
+        <div class="search-input-group">
+          <input type="text" placeholder="Adresini Belirle veya Seç" />
+
+          <div class="location-wrapper">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-crosshair"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.5.5a.5.5 0 0 0-1 0v.518A7.001 7.001 0 0 0 1.018 7.5H.5a.5.5 0 0 0 0 1h.518A7.001 7.001 0 0 0 7.5 14.982v.518a.5.5 0 0 0 1 0v-.518A7.001 7.001 0 0 0 14.982 8.5h.518a.5.5 0 0 0 0-1h-.518A7.001 7.001 0 0 0 8.5 1.018zm-6.48 7A6.001 6.001 0 0 1 7.5 2.02v.48a.5.5 0 0 0 1 0v-.48a6.001 6.001 0 0 1 5.48 5.48h-.48a.5.5 0 0 0 0 1h.48a6.002 6.002 0 0 1-5.48 5.48v-.48a.5.5 0 0 0-1 0v.48A6.001 6.001 0 0 1 2.02 8.5h.48a.5.5 0 0 0 0-1h-.48M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"
+              />
+            </svg>
+            Konumumu bul
+          </div>
+        </div>
+        <button class="search-button">Keşfet</button>
+      </div>
+      <div class="image-container">
+        <img
+          src="https://images.deliveryhero.io/image/foodpanda/homepage/refresh-hero-home-tr.png?width=1264"
+          alt="Yemek Resimleri"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="kirmizi-kutu">
+      <div class="yazilar">
+        <h2>
+          Yemek ve market ihtiyaçlarının tamamı için hemen indir ve uygulamaya
+          özel fırsatları yakala!
+        </h2>
+      </div>
+      <div class="yazilar2">
+        <p>
+          Yemeksepeti uygulamasıyla kampanyalardan haberdar olun, siparişinizin
+          durumunu bildirimlerle takip edin ve haritadan canlı olarak
+          teslimatınızı izleyin. İhtiyacınız olan her şey parmaklarınızın
+          ucunda!
+        </p>
+      </div>
+
+      <div class="logos">
+        <img
+          width="140px"
+          height="45px"
+          src="https://www.enervent.com/wp-content/uploads/2018/11/google-play-badge-logo-png-transparent.png"
+        />
+        <img
+          width="140px"
+          height="45px"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/800px-Download_on_the_App_Store_Badge.svg.png"
+        />
+        <img
+          width="140px"
+          height="45px"
+          src="https://hellopaisa.co.za/hellopaisa-2021/wp-content/uploads/2021/06/huawei-Badge-Black.png"
+        />
+      </div>
+    </div>
+
+    <div class="kirmizi-kutu-2">
+      <div class="resim">
+        <img
+          width="530px"
+          height="450px"
+          src="https://images.deliveryhero.io/image/foodpanda/homepage-yemeksepeti-apps-2.png?width=2800&height=2464"
+        />
+      </div>
+    </div>
+  </div>
+  <section>
+    <p>
+      Türkiye'nin 81 şehri ve KKTC'de, 50 bini aşkın restoran iş ortağımızla,
+      Türkiye’de online yemek siparişi denince ilk akla gelen markayız!
+    </p>
+
+    <p>
+      Restoran zincirleri başta olmak üzere, civarınızdaki en sevdiğiniz
+      restoranlardan kolayca sipariş verebilirsiniz.
+    </p>
+
+    <p>
+      Bunun yanında, hızlı market alışverişine ihtiyacınız varsa, Yemeksepeti
+      Market hizmetinizde! Binlerce market ürünü dilediğiniz anda, dakikalar
+      içinde gelsin!
+    </p>
+
+    <p>
+      Restoranınızı seçin, istediğiniz yemekleri sepete ekleyin, online ya da
+      kapıda dilediğiniz gibi ödeyin. Gerisi kolay, siparişiniz hızlıca
+      kapınızda!
+    </p>
+
+    <p>
+      Yemeksepeti Mahalle de burada! Çevrenizdeki bildiğiniz, güvendiğiniz
+      işletme ve esnaflar; marketten kasaba, şarküteriden manava, balıkçıdan
+      petshopa, tüm kampanyaları ve fırsatlarıyla siparişiniz için hazır.
+    </p>
+
+    <h1>Yemeksepeti’nde sizi neler bekliyor?</h1>
+    <ul>
+      <li>
+        ✓ Yemek siparişi ya da market alışverişinde onlarca mutfak ve kategori,
+        binlerce çeşit ürün!
+      </li>
+      <li>✓ Yemek ve market ihtiyaçlarınızda her gün on binlerce indirim!</li>
+      <li>✓ Online ya da kapıda, dilediğiniz gibi ödeme seçeneği!</li>
+      <li>
+        ✓ Siparişinizle ilgili size her zaman destek olmaya hazır, 7/24 Canlı
+        Yardım ekibi!
+      </li>
+    </ul>
+
+    <p>
+      Tek yapmanız gereken ihtiyacınızı düşünmek ve çevrenizdeki seçeneklere göz
+      atmak!
+    </p>
+
+    <h2>Yemeksepeti yanında, aklındaysa kapında!</h2>
+  </section>
+</body>
+
+{% endblock content %}

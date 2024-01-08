@@ -47,33 +47,33 @@ class UserLoginForm(forms.Form):
         return email
    
 
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profil
-        fields = ('image', 'name',)
+# class UserProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = Profil
+#         fields = ('image', 'name',)
 
-    def __init__(self,*args, **kwargs):
-        super().__init__(*args, **kwargs)
+#     def __init__(self,*args, **kwargs):
+#         super().__init__(*args, **kwargs)
 
-        self.fields['image'].widget = widgets.FileInput(attrs={'class': 'form-control'})
-        self.fields['name'].widget = widgets.TextInput(attrs={'class': 'form-control'})
+#         self.fields['image'].widget = widgets.FileInput(attrs={'class': 'form-control'})
+#         self.fields['name'].widget = widgets.TextInput(attrs={'class': 'form-control'})
 
-class UserEditForm(forms.ModelForm):
-    email = forms.EmailField()
+# class UserEditForm(forms.ModelForm):
+#     email = forms.EmailField()
 
 
-    class Meta:
-        model = User
-        fields = ['username', 'email']
+#     class Meta:
+#         model = User
+#         fields = ['username', 'email']
 
-class ProfilEditForm(forms.ModelForm):
-    class Meta:
-        model = Profil
-        fields = ['image']
+# class ProfilEditForm(forms.ModelForm):
+#     class Meta:
+#         model = Profil
+#         fields = ['image']
 
-class ChangeUserPassword(PasswordChangeForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['old_password'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Old Password'})
-        self.fields['new_password1'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'New Password'})
-        self.fields['new_password2'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'New Password Confirmation'})
+# class ChangeUserPassword(PasswordChangeForm):
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields['old_password'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Old Password'})
+#         self.fields['new_password1'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'New Password'})
+#         self.fields['new_password2'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'New Password Confirmation'})

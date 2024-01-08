@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from autoslug import AutoSlugField
 from PIL import Image
 
 # Create your models here.
@@ -8,7 +7,6 @@ class Profil(models.Model):
     name = models.CharField(max_length= 30, default='empty')
     image = models.ImageField(upload_to='profile_pic')
     kullanici = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
-    slug = AutoSlugField(populate_from = 'name', unique=True, null=True)
 
     def __str__(self):
         return self.name
