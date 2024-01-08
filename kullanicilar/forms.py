@@ -5,11 +5,13 @@ from django.forms import widgets
 from .models import *
 
 class UserRegisterForm(UserCreationForm):
+    isim = forms.CharField(
+    label = 'İsim Soyisim',
+    widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email Giriniz'}))
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('isim','email', 'password1', 'password2')
         labels = {
-            'username': 'Kullanıcı Adı',
             'email': 'E-posta',
         }
 
@@ -17,13 +19,14 @@ class UserRegisterForm(UserCreationForm):
         super().__init__(*args, **kwargs)
 
 
-        for fieldname in ['username', 'email', 'password1', 'password2']:
+        for fieldname in ['email', 'password1', 'password2']:
             self.fields[fieldname].help_text = None
+
 
         self.fields['password1'].label = 'Şifre'
         self.fields['password2'].label = 'Şifre Tekrar'
 
-        self.fields['username'].widget = widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Kullanici Adi'})
+  
         self.fields['email'].widget = widgets.EmailInput(attrs={'class': 'form-control', 'placeholder': 'E-posta'})
         self.fields['password1'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Şifrenizi giriniz'})
         self.fields['password2'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Şifrenizi tekrar giriniz'})
