@@ -28,8 +28,8 @@ class UserRegisterForm(UserCreationForm):
 
   
         self.fields['email'].widget = widgets.EmailInput(attrs={'class': 'form-control', 'placeholder': 'E-posta'})
-        self.fields['password1'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Şifrenizi giriniz'})
-        self.fields['password2'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Şifrenizi tekrar giriniz'})
+        self.fields['password1'].widget = widgets.PasswordInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Şifrenizi giriniz'})
+        self.fields['password2'].widget = widgets.PasswordInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Şifrenizi tekrar giriniz'})
         
 class UserLoginForm(forms.Form):
    email = forms.EmailField(
@@ -38,7 +38,7 @@ class UserLoginForm(forms.Form):
 
    password = forms.CharField(
        label = 'Şifre',
-       widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Şifre Giriniz'}))
+       widget=forms.PasswordInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Şifre Giriniz'}))
 
 
    def clean_email(self, *args, **kwargs):
