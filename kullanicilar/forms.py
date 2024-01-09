@@ -1,16 +1,15 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import widgets
-from .models import *
 
 class UserRegisterForm(UserCreationForm):
-    isim = forms.CharField(
-    label = 'İsim Soyisim',
-    widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email Giriniz'}))
+    first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}))
+    last_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}))
+
     class Meta:
         model = User
-        fields = ('isim','email', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'email', 'password1', 'password2')
         labels = {
             'email': 'E-posta',
         }
@@ -18,18 +17,22 @@ class UserRegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-
         for fieldname in ['email', 'password1', 'password2']:
             self.fields[fieldname].help_text = None
-
 
         self.fields['password1'].label = 'Şifre'
         self.fields['password2'].label = 'Şifre Tekrar'
 
-  
         self.fields['email'].widget = widgets.EmailInput(attrs={'class': 'form-control', 'placeholder': 'E-posta'})
-        self.fields['password1'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Şifrenizi giriniz'})
-        self.fields['password2'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Şifrenizi tekrar giriniz'})
+        self.fields['password1'].widget = widgets.PasswordInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Şifrenizi giriniz'})
+        self.fields['password2'].widget = widgets.PasswordInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Şifrenizi tekrar giriniz'})
+
+    def save(self, commit=True):
+        user = super(UserRegisterForm, self).save(commit=False)
+        user.username = user.email  
+        if commit:
+            user.save()
+        return user
         
 class UserLoginForm(forms.Form):
    email = forms.EmailField(
@@ -38,7 +41,7 @@ class UserLoginForm(forms.Form):
 
    password = forms.CharField(
        label = 'Şifre',
-       widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Şifre Giriniz'}))
+       widget=forms.PasswordInput(attrs={'class': 'form-control mt-2', 'placeholder': 'Şifre Giriniz'}))
 
 
    def clean_email(self, *args, **kwargs):
@@ -48,35 +51,3 @@ class UserLoginForm(forms.Form):
             self.add_error('email', 'Bu email mevcut değil!')
 
         return email
-   
-
-# class UserProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = Profil
-#         fields = ('image', 'name',)
-
-#     def __init__(self,*args, **kwargs):
-#         super().__init__(*args, **kwargs)
-
-#         self.fields['image'].widget = widgets.FileInput(attrs={'class': 'form-control'})
-#         self.fields['name'].widget = widgets.TextInput(attrs={'class': 'form-control'})
-
-# class UserEditForm(forms.ModelForm):
-#     email = forms.EmailField()
-
-
-#     class Meta:
-#         model = User
-#         fields = ['username', 'email']
-
-# class ProfilEditForm(forms.ModelForm):
-#     class Meta:
-#         model = Profil
-#         fields = ['image']
-
-# class ChangeUserPassword(PasswordChangeForm):
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['old_password'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Old Password'})
-#         self.fields['new_password1'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'New Password'})
-#         self.fields['new_password2'].widget = widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'New Password Confirmation'})

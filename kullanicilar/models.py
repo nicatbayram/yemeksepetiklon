@@ -4,11 +4,12 @@ from PIL import Image
 
 # Create your models here.
 class Profil(models.Model):
-    isim = models.CharField(max_length= 30, default='empty')
+    first_name = models.CharField(max_length= 30, default='empty')
+    last_name = models.CharField(max_length= 30, default='empty')
     kullanici = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
 
     def __str__(self):
-        return self.name
+        return self.isim
     
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

@@ -205,8 +205,13 @@
         <nav class="navbar">
             <a href="#"><img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOlzIiP3eMqqDIWe2xgsecaeo_ej4B4EXkGqke_HyIlu5KvfNNiL6tLvVlX6C_5TeNbA&usqp=CAU" alt="logo" class="logo"></a>
             <ul class="nav-list">
-                <li class="login"><a href="#">Giriş Yap</a></li>
-                <li class="register"><a href="#">Kayıt Ol</a></li>
+                {% if user.is_authenticated %}
+                <a href="{% url "cikisyap" %}" class="btn btn-login">Çıkış Yap</a>
+                {% else %}
+                <li class="login"><a href="{% url "girisyap" %}">Giriş Yap</a></li>
+                <li class="register"><a href="{% url "kayitol" %}">Kayıt Ol</a></li>            
+                {% endif %}
+
                 <li class="lang" ><a href="#"><i class="fa-solid fa-globe"></i> TR <i class="fa-solid fa-chevron-down"></i></a></li>
                 <li class="bag" ><a  href="#"><i class="fa-solid fa-bag-shopping"></i></a></li>
         </nav>
