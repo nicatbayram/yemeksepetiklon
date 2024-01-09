@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from django.forms import widgets
 
 class UserRegisterForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}))
-    last_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}))
+    first_name = forms.CharField(label='İsim',max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'İsim'}))
+
+    last_name = forms.CharField(label='Soyisim',max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Soyisim'}))
 
     class Meta:
         model = User
