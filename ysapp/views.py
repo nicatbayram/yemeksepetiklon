@@ -54,4 +54,4 @@ class YemekAddView(LoginRequiredMixin ,CreateView):
         form.instance.restoran = restoran  
         form.instance.kullaniciadi = self.request.user.username  
         return super().form_valid(form)       
-    success_url = reverse_lazy('yspp:restoranlar')
+    success_url = reverse_lazy('ysapp:restoranlar')

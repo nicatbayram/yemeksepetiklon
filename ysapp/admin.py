@@ -3,4 +3,4 @@ from .models import *
 # Register your models here.
 
 admin.site.register(Restoran)
-# admin.site.register(Yemek)
+admin.site.register(Yemek)
