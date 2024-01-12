@@ -21,7 +21,7 @@ class RestoranListView(ListView):
         context = super().get_context_data(**kwargs)
         search_input = self.request.GET.get('search-area') or ""
         if search_input:
-            context['restoranlar'] = context['restoranlar'].filter(baslik__icontains = search_input)
+            context['restoranlar'] = context['restoranlar'].filter(restoranadi__icontains = search_input)
             context['search_input'] = search_input
         return context
 

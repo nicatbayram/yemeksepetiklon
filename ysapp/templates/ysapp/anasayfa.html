@@ -200,8 +200,9 @@
     <div class="content-wrapper">
       <div class="search-area">
         <h1>Yemek ya da market, tüm ihtiyaçların kapında!</h1>
+        <form method="GET" action="{% url 'ysapp:restoranlar' %}">
         <div class="search-input-group">
-          <input type="text" placeholder="Adresini Belirle veya Seç" />
+          <input type="text" name="search-area" placeholder="Adresini Belirle veya Seç" />
 
           <div class="location-wrapper">
             <svg
@@ -222,6 +223,7 @@
         <a href="{% url "ysapp:restoranlar" %}" class="btn search-button">Keşfet</a>
         {% comment %} <button class="search-button">Keşfet</button> {% endcomment %}
       </div>
+    </form>
       <div class="image-container">
         <img
           src="https://images.deliveryhero.io/image/foodpanda/homepage/refresh-hero-home-tr.png?width=1264"
