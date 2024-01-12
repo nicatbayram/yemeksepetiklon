@@ -17,7 +17,7 @@ class Restoran(models.Model):
     
     
 class Yemek(models.Model):
-    restoran = models.ForeignKey(Restoran, related_name="restoran", on_delete=models.DO_NOTHING)
+    restoran = models.ForeignKey(Restoran, related_name="yemek", on_delete=models.DO_NOTHING)
     kullaniciadi = models.CharField(max_length=100, null=True)
     yemekadi = models.TextField(null=True, blank=True)
     
