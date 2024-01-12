@@ -105,6 +105,7 @@
                     {% else %}
                     {% for yemek in restorandetay.yemek.all  %}
                     <h3 style="font-weight:normal; font-size:15px;">{{yemek.yemekadi}}</h3>
+                    <img src="{{ yemek.resim.url }}" alt="Yemek Resim" style="width: 200px; height: 150px;" />
                     <hr>  
                     {% endfor %}
                     {% endif %}

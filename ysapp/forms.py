@@ -5,7 +5,7 @@ class YemekForm(forms.ModelForm):
     
     class Meta:
         model = Yemek
-        fields = ["yemekadi"]
+        fields = ["yemekadi","resim"]
 
         widgets = {
             'yemekadi': forms.Textarea(attrs={'class':'form-control'}),
