@@ -16,15 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from kullanicilar import views as kullanici_view
 from django.conf import settings
 from django.conf.urls.static import static
-
+from payment.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('ysapp.urls')),
     path('',include('kullanicilar.urls')),
+    path('payment/',payment,name='payment'),
+    path('ok/', success, name = 'success'),
+    path('fail/', fail, name='fail'),
+    path('result/', result, name='result'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
 + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
